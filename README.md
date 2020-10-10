@@ -1,2 +1,2 @@
 # infa_2020_karpovich
-hi chimp
+hi rude and horrible world
