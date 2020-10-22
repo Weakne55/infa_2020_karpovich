@@ -175,9 +175,6 @@ def num (name):
            t.forward(100)
            t.pendown()
 
-print(len(A))
-
-c=len(A)
 
 for i in range(len(A)):
     num(A[i])
