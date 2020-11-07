@@ -1,15 +1,25 @@
 import pygame
 from pygame.draw import *
 from random import randint
-import time
 pygame.init()
 
 FPS = 60
 screen = pygame.display.set_mode((1280, 720))
 
+x = randint(100, 700)
+y = randint(100, 500)
+v1 = [-1, 1]
+vx = v1[randint(0, 1)]
+vy = v1[randint(0, 1)]
+main_params=[x,y,vx,vy]
+
+
+
 maxx=1280
 maxy=720
 sum=0
+
+
 
 
 RED = (255, 0, 0)
@@ -21,10 +31,19 @@ CYAN = (0, 255, 255)
 BLACK = (0, 0, 0)
 COLORS = [RED, BLUE, YELLOW, GREEN, MAGENTA, CYAN]
 
+a=randint(1,10)
 
+pos_x=[a]
+for i in range(len(pos_x)):
+    pos_x[i]=randint(100,700)
 
-def new_balls(x,y,r):
-    circle(screen, color, (x, y), r)
+pos_y=[a]
+for i in range(len(pos_y)):
+    pos_y[i]=randint(100,700)
+
+pos_r=[a]
+for i in range(len(pos_r)):
+    pos_r[i]=randint(5,10)
 
 def click(event):
     global x, y, r
@@ -39,21 +58,7 @@ def score(sum):
 clock = pygame.time.Clock()
 finished = False
 
-
-while not finished:
-    click = False
-    x = randint(100, 700)
-    y = randint(100, 500)
-    r = randint(30, 100)
-    v1 = [-1,1]
-    vx = v1[randint(0,1)]
-    vy = v1[randint(0,1)]
-    color = COLORS[randint(0, 5)]
-
-
-
-    while click == False and finished == False:
-        new_balls(x, y, r)
+def ball(x,y,r,color,vx,vy):
         x += vx
         y += vy
         clock.tick(FPS)
@@ -65,9 +70,21 @@ while not finished:
             vy *= (-1)
         elif y <= (0 + r):
             vy *= (-1)
-        score(sum)
+        circle(screen, color, (x, y), r)
         pygame.display.update()
         screen.fill(BLACK)
+        return [x,y,vx,vy]
+
+
+
+while not finished:
+    click = False
+    color = COLORS[randint(0, 5)]
+    r = randint(30, 100)
+
+    while click == False and finished == False:
+        main_params=ball(main_params[0],main_params[1],r,color,main_params[2],main_params[3])
+        score(sum)
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 finished = True
