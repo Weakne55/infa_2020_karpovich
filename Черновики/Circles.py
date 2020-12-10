@@ -76,7 +76,6 @@ def ball(x,y,r,color,vx,vy):
         return [x,y,vx,vy]
 
 
-
 while not finished:
     click = False
     color = COLORS[randint(0, 5)]
